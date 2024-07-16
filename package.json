@@ -4,15 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:users-service": "nodemon --exec ts-node src/users-service/index.ts",
     "start:users-service": "pm2 start --interpreter ts-node src/users-service/index.ts --name users-service",
-    "start:products-service": "pm2 start --interpreter ts-node src/products-service/index.ts --name products-service",
-    "start:ask-question-service": "pm2 start --interpreter ts-node src/ask-question-service/index.ts --name ask-question-service",
-    "start:quote-service": "pm2 start --interpreter ts-node src/quote-service/index.ts --name quote-service",
-    "start:appointment-service": "pm2 start --interpreter ts-node src/appointment-service/index.ts --name appointment-service",
-    "start": "npm run start:users-service && npm run start:products-service && npm run start:ask-question-service && npm run start:quote-service && npm run start:appointment-service",
+    "start": "npm run start:users-service",
     "restart": "npm stop --if-present && npm run start",
-    "stop": "pm2 delete users-service || true && pm2 delete products-service || true && pm2 delete ask-question-service || true && pm2 delete quote-service || true && pm2 delete appointment-service || true"
+    "stop": "pm2 delete users-service"
   },
   "keywords": [],
   "author": "",
