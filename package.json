@@ -6,8 +6,7 @@
   "scripts": {
     "start:users-service": "pm2 start --interpreter ts-node src/users-service/index.ts --name users-service",
     "start": "npm run start:users-service",
-    "restart": "npm stop --if-present && npm run start",
-    "stop": "pm2 delete users-service"
+    "restart": "npm stop --if-present && npm run start"
   },
   "keywords": [],
   "author": "",
