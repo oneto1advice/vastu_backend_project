@@ -1,0 +1,52 @@
+{
+  "name": "vastu_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:users-service": "nodemon --exec ts-node src/users-service/index.ts",
+    "start:users-service": "pm2 start --interpreter ts-node src/users-service/index.ts --name users-service",
+    "start:products-service": "pm2 start --interpreter ts-node src/products-service/index.ts --name products-service",
+    "start:ask-question-service": "pm2 start --interpreter ts-node src/ask-question-service/index.ts --name ask-question-service",
+    "start:quote-service": "pm2 start --interpreter ts-node src/quote-service/index.ts --name quote-service",
+    "start:appointment-service": "pm2 start --interpreter ts-node src/appointment-service/index.ts --name appointment-service",
+    "start": "npm run start:users-service && npm run start:products-service && npm run start:ask-question-service && npm run start:quote-service && npm run start:appointment-service",
+    "restart": "npm stop --if-present && npm run start",
+    "stop": "pm2 delete users-service || true && pm2 delete products-service || true && pm2 delete ask-question-service || true && pm2 delete quote-service || true && pm2 delete appointment-service || true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "msg91": "^2.2.4",
+    "nodemon": "^3.1.0",
+    "otp-generator": "^4.0.1",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "request": "^2.88.2",
+    "sequelize": "^6.37.1",
+    "sequelize-typescript": "^2.1.6",
+    "ts-node": "^10.9.2",
+    "twilio": "^5.0.1",
+    "body-parser": "^1.20.2",
+    "typescript": "^5.4.3",
+    "razorpay": "^2.9.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "@types/otp-generator": "^4.0.2",
+    "@types/pg": "^8.11.4",
+    "@types/validator": "^13.11.9"
+  }
+
+
+   
+    
+}
+
+
+
