@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:users-service": "pm2 start --interpreter ts-node src/users-service/index.ts --name users-service",
+    "start:users-service": "pm2 start src/users-service/index.ts --interpreter ts-node --name users-service",
     "start": "npm run start:users-service",
-    "restart": "npm stop --if-present && npm run start"
+    "restart": "pm2 restart users-service"
+
   },
   "keywords": [],
   "author": "",

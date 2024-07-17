@@ -1,8 +1,6 @@
 import express from 'express';
 import {  registerUser, sendOTPController, loginByEmailAndPassword,verifyOTP, loginByMobileAndOTP } from '../controllers/userController';
 const router = express.Router();
-// router.post('/loginByEmailAndPassword', loginUserByEmailAndPassword);
-// router.post('/loginByMobileAndOTP', loginUserByMobileAndOTP);
 router.post('/login/email', loginByEmailAndPassword);
 router.post('/login/mobile', loginByMobileAndOTP);
 router.post('/register', registerUser);
