@@ -6,7 +6,7 @@
   "scripts": {
     "start:users-service": "pm2 start src/users-service/index.ts --interpreter ts-node --name users-service",
     "start": "npm run start:users-service",
-    "restart": "pm2 restart users-service"
+    "restart": "pm2 restart users-service --update-env"
 
   },
   "keywords": [],
