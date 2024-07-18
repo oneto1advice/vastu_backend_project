@@ -5,5 +5,10 @@ module.exports = {
         script: 'src/users-service/index.ts',
         interpreter: 'ts-node',
       },
+      {
+        name: 'appointment-service',
+        script: 'src/appointment-service/index.ts',
+        interpreter: 'ts-node',
+      },
     ],
   };
