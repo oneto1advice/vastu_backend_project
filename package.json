@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:users-service": "pm2 start src/users-service/index.ts --interpreter ts-node --name users-service",
-    "start:appointment-service": "pm2 start src/appointment-service/index.ts --interpreter ts-node --name appointment-service",
+    "start:users-service:3001": "PORT=3001 pm2 start src/users-service/index.ts --interpreter ts-node --name users-service-3001",
+    "start:users-service:3002": "PORT=3002 pm2 start src/users-service/index.ts --interpreter ts-node --name users-service-3002",
+    "start:appointment-service:4001": "PORT=4001 pm2 start src/appointment-service/index.ts --interpreter ts-node --name appointment-service-4001",
+    "start:appointment-service:4002": "PORT=4002 pm2 start src/appointment-service/index.ts --interpreter ts-node --name appointment-service-4002",
+    "start:users-service": "npm run start:users-service:3001 && npm run start:users-service:3002",
+    "start:appointment-service": "npm run start:appointment-service:4001 && npm run start:appointment-service:4002",
     "start": "npm run start:users-service && npm run start:appointment-service",
-    "restart": "pm2 restart users-service --update-env && pm2 restart appointment-service --update-env ",
+    "restart": "pm2 restart users-service-3001 --update-env && pm2 restart users-service-3002 --update-env && pm2 restart appointment-service-4001 --update-env && pm2 restart appointment-service-4002 --update-env",
     "local:users-service": "npx ts-node src/users-service/index.ts",
     "local:appointment-service": "npx ts-node src/appointment-service/index.ts"
   },
