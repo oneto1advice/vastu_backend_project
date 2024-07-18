@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start:users-service": "pm2 start src/users-service/index.ts --interpreter ts-node --name users-service",
-    "start": "npm run start:users-service",
-    "restart": "pm2 restart users-service --update-env",
-    "local": "npx ts-node src/users-service/index.ts"
+    "start:appointment-service": "pm2 start src/appointment-service/index.ts --interpreter ts-node --name appointment-service",
+    "start": "npm run start:users-service && npm run start:appointment-service",
+    "restart": "pm2 restart users-service --update-env && pm2 restart appointment-service --update-env ",
+    "local:users-service": "npx ts-node src/users-service/index.ts",
+    "local:appointment-service": "npx ts-node src/appointment-service/index.ts"
   },
   "keywords": [],
   "author": "",

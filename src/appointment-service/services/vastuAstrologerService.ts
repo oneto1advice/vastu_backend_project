@@ -3,9 +3,9 @@
 import  {VastuAstrologerRepository}  from '../repo/vastuAstrologerRepository';
 
 export class VastuAstrologerService {
-    static async createContact(data: any): Promise<any> {
+    static async createVastuAstrologer(data: any): Promise<any> {
         try {
-            const quote = await VastuAstrologerRepository.createContact(data);
+            const quote = await VastuAstrologerRepository.createVastuAstrologer(data);
             return quote;
         } catch (error) {
             throw new Error('Could not create quote');
@@ -42,12 +42,12 @@ export class VastuAstrologerService {
     //     }
     // }
 
-    // static async getAllContacts(): Promise<any> {
-    //     try {
-    //         const contacts = await ContactRepository.getAllContacts();
-    //         return contacts;
-    //     } catch (error) {
-    //         throw new Error('Could not get contacts');
-    //     }
-    // }
+    static async getAllVastuAstrologer(): Promise<any> {
+        try {
+            const contacts = await VastuAstrologerRepository.getAllVastuAstrologer();
+            return contacts;
+        } catch (error) {
+            throw new Error('Could not get contacts');
+        }
+    }
 }

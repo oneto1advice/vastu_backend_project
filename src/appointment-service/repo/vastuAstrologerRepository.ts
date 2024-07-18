@@ -3,7 +3,7 @@
 import VastuAstrologer from '../models/vastuAstrologer';
 
 export class VastuAstrologerRepository {
-    static async createContact(data: any): Promise<any> {
+    static async createVastuAstrologer(data: any): Promise<any> {
         try {
             const vastuAstrogler = await VastuAstrologer.create(data);
             return { exists: false, message: "Submit successfully.", status: "success", data: vastuAstrogler };
@@ -30,7 +30,7 @@ export class VastuAstrologerRepository {
     //     });
     // }
 
-    // static async getAllContacts(): Promise<any[]> {
-    //     return await Contact.findAll();
-    // }
+    static async getAllVastuAstrologer(): Promise<any[]> {
+        return await VastuAstrologer.findAll();
+    }
 }

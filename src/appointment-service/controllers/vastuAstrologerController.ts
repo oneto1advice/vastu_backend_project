@@ -3,9 +3,9 @@
 import { Request, Response } from 'express';
 import {VastuAstrologerService}  from '../services/vastuAstrologerService';
 export class VastuAstrologerController {
-    static async createContact(req: Request, res: Response): Promise<void> {
+    static async createVastuAstrologer(req: Request, res: Response): Promise<void> {
         try {
-            const quote = await VastuAstrologerService.createContact(req.body);
+            const quote = await VastuAstrologerService.createVastuAstrologer(req.body);
             if (quote) {
                 res.json({ message: 'Submit successful', quote });
               } else {
@@ -46,12 +46,12 @@ export class VastuAstrologerController {
     //     }
     // }
 
-    // static async getAllContacts(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const contacts = await ContactService.getAllContacts();
-    //         res.status(200).json(contacts);
-    //     } catch (error) {
-    //         res.status(500).send('Server error');
-    //     }
-    // }
+    static async getAllVastuAstrologer(req: Request, res: Response): Promise<void> {
+        try {
+            const contacts = await VastuAstrologerService.getAllVastuAstrologer();
+            res.status(200).json(contacts);
+        } catch (error) {
+            res.status(500).send('Server error');
+        }
+    }
 }
