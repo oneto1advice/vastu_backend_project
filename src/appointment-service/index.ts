@@ -2,8 +2,7 @@ import express from 'express';
 import vastuAstrologerRoutes from './routes/vastuAstrologerRoutes';
 import  { sequelize } from '../config/databaseConfig';
 import dotenv from 'dotenv';
-
-dotenv.config();
+dotenv.config({ path: '.env.appointment-service' });  // Specify the path to the .env file
 const app = express();
 const PORT = process.env.PORT || 4001;
 

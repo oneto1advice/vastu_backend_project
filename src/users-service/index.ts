@@ -3,7 +3,7 @@ import userRoutes from './routes/userRoutes';
 import  { sequelize } from '../config/databaseConfig';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ path: '.env.users-service' });  // Specify the path to the .env file
 const app = express();
 const PORT = process.env.PORT || 3001;
 

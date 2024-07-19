@@ -1,7 +1,11 @@
 import { Sequelize } from 'sequelize-typescript';
 import dotenv from 'dotenv';
 
-dotenv.config();
+const envFile = process.env.NODE_ENV === 'appointment-service'
+  ? '.env.appointment-service'
+  : '.env.users-service';
+
+dotenv.config({ path: envFile });
 export const sequelize = new Sequelize({
   dialect: 'postgres',
   host: process.env.DB_HOST,
