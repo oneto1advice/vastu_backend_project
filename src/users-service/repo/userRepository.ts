@@ -50,6 +50,13 @@ export class UserRepository {
     return await User.findOne({ where: { mobile, otp } });
   }
 
+  public static async deleteAccount(id: number, data: any): Promise<any | null> {
+    var value = await User.update(data,{ where: { id } });
+    console.log(value)
+    return value;
+  }
+
+
 
 
 

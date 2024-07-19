@@ -8,6 +8,7 @@ const user = sequelize.define('users', {
   password: DataType.STRING,
   role: DataType.STRING,
   otp: DataType.STRING,
+  status: DataType.INTEGER
 });
 
 user.sync();

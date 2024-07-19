@@ -72,6 +72,10 @@ export class UserService {
     return UserRepository.findByMobileAndOtp(mobile, otp);
   }
 
+  public static async deleteAccount(id: number, data: any): Promise<any | null> {
+    return UserRepository.deleteAccount(id, data);
+  }
+
 
 }
 
