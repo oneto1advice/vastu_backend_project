@@ -42,12 +42,12 @@ export class QuoteService {
     //     }
     // }
 
-    // static async getAllContacts(): Promise<any> {
-    //     try {
-    //         const contacts = await ContactRepository.getAllContacts();
-    //         return contacts;
-    //     } catch (error) {
-    //         throw new Error('Could not get contacts');
-    //     }
-    // }
+    static async getAllQuotes(): Promise<any> {
+        try {
+            const contacts = await QuoteRepository.getAllQuotes();
+            return contacts;
+        } catch (error) {
+            throw new Error('Could not get contacts');
+        }
+    }
 }

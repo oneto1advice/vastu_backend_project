@@ -18,5 +18,14 @@ module.exports = {
           PORT: 4001
         }
       },
+      {
+        name: 'quote-service',
+        script: 'src/quote-service/index.ts',
+        interpreter: 'ts-node',
+        env: {
+          NODE_ENV: 'quote-service',
+          PORT: 5001
+        }
+      },
     ],
   };

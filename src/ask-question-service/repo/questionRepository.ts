@@ -30,7 +30,7 @@ export class QuestionRepository {
     //     });
     // }
 
-    // static async getAllContacts(): Promise<any[]> {
-    //     return await Contact.findAll();
-    // }
+    static async getAllQuestions(): Promise<any[]> {
+        return await Question.findAll();
+    }
 }

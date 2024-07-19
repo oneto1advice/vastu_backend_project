@@ -42,12 +42,12 @@ export class QuestionService {
     //     }
     // }
 
-    // static async getAllContacts(): Promise<any> {
-    //     try {
-    //         const contacts = await ContactRepository.getAllContacts();
-    //         return contacts;
-    //     } catch (error) {
-    //         throw new Error('Could not get contacts');
-    //     }
-    // }
+    static async getAllQuestions(): Promise<any> {
+        try {
+            const contacts = await QuestionRepository.getAllQuestions();
+            return contacts;
+        } catch (error) {
+            throw new Error('Could not get contacts');
+        }
+    }
 }

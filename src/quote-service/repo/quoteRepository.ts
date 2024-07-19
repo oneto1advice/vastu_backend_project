@@ -30,7 +30,7 @@ export class QuoteRepository {
     //     });
     // }
 
-    // static async getAllContacts(): Promise<any[]> {
-    //     return await Contact.findAll();
-    // }
+    static async getAllQuotes(): Promise<any[]> {
+        return await Quote.findAll();
+    }
 }

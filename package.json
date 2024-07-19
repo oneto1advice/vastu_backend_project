@@ -6,12 +6,15 @@
   "scripts": {
     "start:users-service:3001": "cross-env NODE_ENV=users-service PORT=3001 pm2 start src/users-service/index.ts --interpreter ts-node --name users-service-3001",
     "start:appointment-service:4001": "cross-env NODE_ENV=appointment-service PORT=4001 pm2 start src/appointment-service/index.ts --interpreter ts-node --name appointment-service-4001",
+    "start:quote-service:5001": "cross-env NODE_ENV=quote-service PORT=5001 pm2 start src/quote-service/index.ts --interpreter ts-node --name quote-service-5001",
     "start:users-service": "npm run start:users-service:3001",
     "start:appointment-service": "npm run start:appointment-service:4001",
-    "start": "npm run start:users-service && npm run start:appointment-service",
-    "restart": "pm2 restart users-service-3001 --update-env && pm2 restart appointment-service-4001 --update-env",
+    "start:quote-service": "npm run start:quote-service:5001",
+    "start": "npm run start:users-service && npm run start:appointment-service && npm run start:quote-service",
+    "restart": "pm2 restart users-service-3001 --update-env && pm2 restart appointment-service-4001 --update-env && pm2 restart quote-service-5001 --update-env",
     "local:users-service": "cross-env NODE_ENV=users-service npx ts-node src/users-service/index.ts",
-    "local:appointment-service": "cross-env NODE_ENV=appointment-service npx ts-node src/appointment-service/index.ts"
+    "local:appointment-service": "cross-env NODE_ENV=appointment-service npx ts-node src/appointment-service/index.ts",
+    "local:quote-service": "cross-env NODE_ENV=quote-service npx ts-node src/quote-service/index.ts"
   },
   "keywords": [],
   "author": "",

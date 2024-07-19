@@ -47,12 +47,12 @@ export class QuestionController {
     //     }
     // }
 
-    // static async getAllContacts(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const contacts = await ContactService.getAllContacts();
-    //         res.status(200).json(contacts);
-    //     } catch (error) {
-    //         res.status(500).send('Server error');
-    //     }
-    // }
+    static async getAllQuestions(req: Request, res: Response): Promise<void> {
+        try {
+            const contacts = await QuestionService.getAllQuestions();
+            res.status(200).json(contacts);
+        } catch (error) {
+            res.status(500).send('Server error');
+        }
+    }
 }

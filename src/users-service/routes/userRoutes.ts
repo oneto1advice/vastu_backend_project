@@ -6,5 +6,6 @@ router.post('/login/mobile', loginByMobileAndOTP);
 router.post('/register', registerUser);
 router.post('/send-otp', sendOTPController);
 router.post('/verify-otp', verifyOTP);
+// router.post('/deleteAccount', deleteAccount);
 
 export default router;

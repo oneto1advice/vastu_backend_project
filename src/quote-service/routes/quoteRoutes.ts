@@ -5,5 +5,5 @@ router.post('/', QuoteController.createContact);
 // router.get('/:id', QuestionController.getContact);
 // router.put('/:id', QuestionController.updateContact);
 // router.delete('/:id', QuestionController.deleteContact);
-// router.get('/', QuestionController.getAllContacts);
+router.get('/all', QuoteController.getAllQuotes);
 export default router;
