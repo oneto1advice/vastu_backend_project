@@ -4,9 +4,9 @@ import { Request, Response } from 'express';
 import {QuestionService}  from '../services/questionService';
 
 export class QuestionController {
-    static async createContact(req: Request, res: Response): Promise<void> {
+    static async createQuestions(req: Request, res: Response): Promise<void> {
         try {
-            const question = await QuestionService.createContact(req.body);
+            const question = await QuestionService.createQuestions(req.body);
             if (question) {
                 res.json({ message: 'Submit successful', question });
               } else {

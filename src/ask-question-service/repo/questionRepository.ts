@@ -3,7 +3,7 @@
 import Question from '../models/question';
 
 export class QuestionRepository {
-    static async createContact(data: any): Promise<any> {
+    static async createQuestions(data: any): Promise<any> {
         try {
             const question = await Question.create(data);
             return { exists: false, message: "Submit successfully.", status: "success", data: question };

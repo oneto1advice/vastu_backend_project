@@ -3,9 +3,9 @@
 import  {QuestionRepository}  from '../repo/questionRepository';
 
 export class QuestionService {
-    static async createContact(data: any): Promise<any> {
+    static async createQuestions(data: any): Promise<any> {
         try {
-            const contact = await QuestionRepository.createContact(data);
+            const contact = await QuestionRepository.createQuestions(data);
             return contact;
         } catch (error) {
             throw new Error('Could not create question');
