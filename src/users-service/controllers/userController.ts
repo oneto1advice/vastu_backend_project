@@ -102,11 +102,21 @@ export async function deleteAccount(req: Request, res: Response): Promise<void> 
   try {
     const { id } = req.params;
     const disableAccount = await UserService.deleteAccount(parseInt(id), req.body);
-    if(disableAccount[0] === 1){
-      res.status(200).json({ message: 'Delete Account successfully'});
-    }
+
+    console.log("disableAccount",disableAccount)
+    res.status(200).json({ message: disableAccount });
   } catch (error) {
     res.status(404).send('User not found');
+  }
+}
+
+
+export async function getAllUsers(req: Request, res: Response): Promise<void> {
+  try {
+    const allUsers = await UserService.getAllUsers();
+    res.status(200).json(allUsers);
+  } catch (error) {
+    res.status(500).send('Server error');
   }
 }
 

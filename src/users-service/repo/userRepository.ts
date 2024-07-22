@@ -40,8 +40,6 @@ export class UserRepository {
     return await User.findOne({ where: { [Op.or]: [{ email: emailOrMobile }, { mobile: emailOrMobile }] } });
   }
 
-
-
   public static async findByEmailAndPassword(email: string, password: string): Promise<any | null> {
     return await User.findOne({ where: { email, password } });
   }
@@ -51,55 +49,20 @@ export class UserRepository {
   }
 
   public static async deleteAccount(id: number, data: any): Promise<any | null> {
-    var value = await User.update(data,{ where: { id } });
-    console.log(value)
-    return value;
+    var value = "";
+    console.log(data.status)
+    var user = await User.findOne({ where: { id } });
+    console.log(user?.dataValues.status)
+     if(user?.dataValues.status === 2){
+       value = "No data found";
+     }else {
+      await User.update(data,{ where: { id } });
+      value = "Delete Account Successfully";
+     }
+     return value;
   }
 
-
-
-
-
-
-
-  // Method to retrieve a user by their email
-  // async getUserByEmail(email: string): Promise<User | undefined> {
-  //   // Your logic to retrieve the user data by email, e.g., from a database
-  //   return this.users.find((user) => user.email === email); // For demonstration, we're searching in the array
-  // }
-
-
-  // Method to retrieve a user by their mobile
-  // async getUserByMobile(mobile: string): Promise<User | undefined> {
-  //   // Your logic to retrieve the user data by mobile, e.g., from a database
-  //   return this.users.find((user) => user.mobile === mobile); // For demonstration, we're searching in the array
-  // }
-
-  // async updateUserOTP(user: User, otp: string): Promise<void> {
-  //   user.otp = otp;
-  //   // Update user in database
-  // }
-
-  // async clearUserOTP(user: User): Promise<void> {
-  //   delete user.otp;
-  //   // Update user in database
-  // }
-
-
-  // Method to update an existing user
-  // async updateUser(user: User): Promise<User | null> {
-  //   const index = this.users.findIndex((u) => u.id === user.id);
-  //   if (index !== -1) {
-  //     this.users[index] = user; // For demonstration, we're updating the user in the array
-  //     return user;
-  //   }
-  //   return null;
-  // }
-
-  // Method to delete a user by their ID
-  // async deleteUserById(id: number): Promise<boolean> {
-  //   const initialLength = this.users.length;
-  //   this.users = this.users.filter((user) => user.id !== id); // For demonstration, we're removing the user from the array
-  //   return this.users.length !== initialLength; // Return true if user was deleted, false otherwise
-  // }
+  static async getAllUsers(): Promise<any[]> {
+    return await User.findAll();
+}
 }

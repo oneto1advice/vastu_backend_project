@@ -77,5 +77,15 @@ export class UserService {
   }
 
 
+  static async getAllUsers(): Promise<any> {
+    try {
+        const allusers = await UserRepository.getAllUsers();
+        return allusers;
+    } catch (error) {
+        throw new Error('Could not get users');
+    }
+}
+
+
 }
 
