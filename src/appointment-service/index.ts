@@ -15,6 +15,10 @@ sequelize.authenticate().then(() => {
 }).catch(err => {
   console.error('Unable to connect to the database:', err);
 });
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log("Database & tables created!");
+  });
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => {

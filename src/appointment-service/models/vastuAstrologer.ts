@@ -8,7 +8,11 @@ const vastuAstrogler = sequelize.define('vastuAstrogler', {
   charge: DataType.INTEGER,
   industryExp: DataType.INTEGER,
   commercialExp: DataType.INTEGER,
-  residentialExp: DataType.INTEGER
+  residentialExp: DataType.INTEGER,
+  availability: {
+    type: DataType.JSONB,
+    allowNull: true
+  }
 });
 
 vastuAstrogler.sync();
