@@ -27,5 +27,23 @@ module.exports = {
           PORT: 5001
         }
       },
+      {
+        name: 'ask-question-service',
+        script: 'src/ask-question-service/index.ts',
+        interpreter: 'ts-node',
+        env: {
+          NODE_ENV: 'ask-question-service',
+          PORT: 6001
+        }
+      },
+      {
+        name: 'notification-service',
+        script: 'src/notification-service/index.ts',
+        interpreter: 'ts-node',
+        env: {
+          NODE_ENV: 'notification-service',
+          PORT: 7001
+        }
+      },
     ],
   };
