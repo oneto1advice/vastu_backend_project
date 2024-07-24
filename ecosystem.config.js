@@ -45,5 +45,14 @@ module.exports = {
           PORT: 7001
         }
       },
+      {
+        name: 'payment-service',
+        script: 'src/payment-service/index.ts',
+        interpreter: 'ts-node',
+        env: {
+          NODE_ENV: 'payment-service',
+          PORT: 8001
+        }
+      },
     ],
   };

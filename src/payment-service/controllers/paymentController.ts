@@ -2,86 +2,87 @@
 
 import { Request, Response } from 'express';
 import { PaymentService } from '../services/paymentService';
+import { promises } from 'dns';
 
 export class PaymentController {
-    static async createOrder(req: Request, res: Response): Promise<void> {
-        try {
-            const payment = await PaymentService.createOrder(req.body);
-            if (payment) {
-                res.json({ message: 'Submit successful', payment });
-            } else {
-                res.status(401).json({ message: 'Invalid details' });
-            }
-        } catch (error) {
-            res.status(500).send('Server error');
-        }
+  static async createOrder(req: Request, res: Response): Promise<void> {
+    try {
+      const payment = await PaymentService.createOrder(req.body);
+      if (payment) {
+        res.json({ message: 'Submit successful', payment });
+      } else {
+        res.status(401).json({ message: 'Invalid details' });
+      }
+    } catch (error) {
+      res.status(500).send('Server error');
     }
+  }
 
 
-    static async savePayment(req: Request, res: Response): Promise<void> {
-        try {
-            const paymentData = req.body;
-            const payment = await PaymentService.savePayment(paymentData);
-            res.status(201).json(payment);
-        } catch (error: any) {
-            res.status(500).json({ error: error.message });
-        }
-    };
+  static async verifyPayment(req: Request, res: Response): Promise<void> {
+   
+    try {
+      const { razorpay_order_id, razorpay_payment_id, signature } = req.body;
 
-    static async handleWebhook(req: Request, res: Response): Promise<void> {
-        try {
-          const { event, payload } = req.body;
-      
-          if (event === 'payment.captured') {
-            const paymentData = {
-              payment_id: payload.payment.entity.id,
-              status: 'captured',
-            };
-            await PaymentService.updatePaymentStatus(paymentData.payment_id, paymentData.status);
-          }
-      
-          res.status(200).send('Webhook received');
-        } catch (error: any) {
-          res.status(500).json({ error: error.message });
-        }
-      };
+      const paymentData = await PaymentService.verifyPayment(razorpay_order_id, razorpay_payment_id, signature);
+      res.status(200).json({ status: 'ok', paymentData });
+    } catch (error: any) {
+      res.status(400).json({ status: 'error', message: error.message });
+    }
+  };
 
-    // static async getContact(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const { id } = req.params;
-    //         const contact = await ContactService.getContact(parseInt(id));
-    //         res.status(200).json(contact);
-    //     } catch (error) {
-    //         res.status(404).send('Contact not found');
-    //     }
-    // }
+ 
+  static async updatePaymentStatusController(req: Request, res: Response): Promise<any> {
+    try {
+      const { razorpay_order_id, status } = req.body;
+      console.log(`Received request to update status: ${status} for order: ${razorpay_order_id}`);
 
-    // static async updateContact(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const { id } = req.params;
-    //         const contact = await ContactService.updateContact(parseInt(id), req.body);
-    //         res.status(200).json(contact);
-    //     } catch (error) {
-    //         res.status(404).send('Contact not found');
-    //     }
-    // }
+      const payment = await PaymentService.updatePaymentStatus(razorpay_order_id, status);
+      console.log('Payment updated successfully:', payment);
 
-    // static async deleteContact(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const { id } = req.params;
-    //         await ContactService.deleteContact(parseInt(id));
-    //         res.status(204).end();
-    //     } catch (error) {
-    //         res.status(404).send('Contact not found');
-    //     }
-    // }
+      res.json(payment);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  };
 
-    // static async getAllContacts(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const contacts = await ContactService.getAllContacts();
-    //         res.status(200).json(contacts);
-    //     } catch (error) {
-    //         res.status(500).send('Server error');
-    //     }
-    // }
+
+  // static async getContact(req: Request, res: Response): Promise<void> {
+  //     try {
+  //         const { id } = req.params;
+  //         const contact = await ContactService.getContact(parseInt(id));
+  //         res.status(200).json(contact);
+  //     } catch (error) {
+  //         res.status(404).send('Contact not found');
+  //     }
+  // }
+
+  // static async updateContact(req: Request, res: Response): Promise<void> {
+  //     try {
+  //         const { id } = req.params;
+  //         const contact = await ContactService.updateContact(parseInt(id), req.body);
+  //         res.status(200).json(contact);
+  //     } catch (error) {
+  //         res.status(404).send('Contact not found');
+  //     }
+  // }
+
+  // static async deleteContact(req: Request, res: Response): Promise<void> {
+  //     try {
+  //         const { id } = req.params;
+  //         await ContactService.deleteContact(parseInt(id));
+  //         res.status(204).end();
+  //     } catch (error) {
+  //         res.status(404).send('Contact not found');
+  //     }
+  // }
+
+  // static async getAllContacts(req: Request, res: Response): Promise<void> {
+  //     try {
+  //         const contacts = await ContactService.getAllContacts();
+  //         res.status(200).json(contacts);
+  //     } catch (error) {
+  //         res.status(500).send('Server error');
+  //     }
+  // }
 }

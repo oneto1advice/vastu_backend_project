@@ -1,47 +1,60 @@
 // services/contactService.ts
 
+
 import Razorpay from 'razorpay';
 import  {PaymentRepository}  from '../repo/paymentRepository';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.payment-service' });
+
 
 export class PaymentService {
   static razorpay = new Razorpay({
-    key_id: 'rzp_test_ru9JhDbASvbpJZ',
-    key_secret: 'HlpXqwhvbh4g9BtWfUWFLJRZ',
+    key_id: process.env.RAZORPAY_KEY_ID as string,
+    key_secret: process.env.RAZORPAY_KEY_SECRET as string,
   });  
 
-
-    //  static razorpay = new Razorpay({
-    //     key_id: process.env.RAZORPAY_KEY_ID!,
-    //     key_secret: process.env.RAZORPAY_KEY_SECRET!,
-    //   });  
-
-
     static async createOrder(data: any): Promise<any> {
+
+      console.log("Sunder", data)
         try {
           const options = {
-            amount: data.amount * 100, // converting to smallest currency unit
+            amount: data.amount * 100,
             currency: data.currency,
-            receipt: data.userId,
+            receipt: "receipt"+data.userId
           };
-            const contact = await this.razorpay.orders.create(options);
-            return contact;
+        const order =  await this.razorpay.orders.create(options);
+        const payment = await PaymentRepository.createOrder({
+          userId: data.userId,
+          consultantId: data.consultantId,
+          amount: data.amount,
+          currency: data.currency,
+          status: 'created',
+          razorpay_order_id: order.id,
+        });
+        return payment;
         } catch (error) {
             throw new Error('Could not create order');
         }
     }
 
-    static async savePayment(paymentData: any): Promise<any> {
+    static async verifyPayment(razorpay_order_id: string, razorpay_payment_id: string, signature: string): Promise<any> {
         try {
-          const payment = await PaymentRepository.createOrder(paymentData);
+          const payment = await PaymentRepository.verifyPayment(razorpay_order_id, razorpay_payment_id, signature);
           return payment;
         } catch (error) {
           throw new Error('Could not save payment');
         }
       }
 
-    static async updatePaymentStatus(payment_id: string, status: string): Promise<void> {
+    
+
+    static async updatePaymentStatus(razorpay_order_id: string, status: string): Promise<void> {
         try {
-          await PaymentRepository.updatePaymentStatus(payment_id, status);
+          console.log(`Updating payment status for order: ${razorpay_order_id} to status: ${status}`);
+          const payment = await PaymentRepository.updatePaymentStatus(razorpay_order_id, { status });
+          console.log('Updated payment:', payment);
+
+          return payment;
         } catch (error) {
           throw new Error('Could not update payment status');
         }

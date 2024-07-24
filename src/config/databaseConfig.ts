@@ -5,7 +5,8 @@ const envFile = process.env.NODE_ENV === 'appointment-service'
   ? '.env.appointment-service' : process.env.NODE_ENV === 'users-service' ?
    '.env.users-service' : process.env.NODE_ENV === 'ask-question-service' ?
    '.env.ask-question-service' :  process.env.NODE_ENV === 'notification-service' ?
-   '.env.notification-service' : '.env.quote-service';
+   '.env.notification-service' :  process.env.NODE_ENV === 'payment-service' ?
+   '.env.payment-service' : '.env.quote-service';
 
 dotenv.config({ path: envFile });
 export const sequelize = new Sequelize({

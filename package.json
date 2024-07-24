@@ -1,6 +1,6 @@
 {
   "name": "vastu_backend",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,22 +9,21 @@
     "start:quote-service:5001": "cross-env NODE_ENV=quote-service PORT=5001 pm2 start src/quote-service/index.ts --interpreter ts-node --name quote-service-5001",
     "start:ask-question-service:6001": "cross-env NODE_ENV=ask-question-service PORT=6001 pm2 start src/ask-question-service/index.ts --interpreter ts-node --name ask-question-service-6001",
     "start:notification-service:7001": "cross-env NODE_ENV=notification-service PORT=7001 pm2 start src/notification-service/index.ts --interpreter ts-node --name notification-service-7001",
-
+    "start:payment-service:8001": "cross-env NODE_ENV=payment-service PORT=8001 pm2 start src/payment-service/index.ts --interpreter ts-node --name payment-service-8001",
     "start:users-service": "npm run start:users-service:3001",
     "start:appointment-service": "npm run start:appointment-service:4001",
     "start:quote-service": "npm run start:quote-service:5001",
     "start:ask-question-service": "npm run start:ask-question-service:6001",
     "start:notification-service": "npm run start:notification-service:7001",
-
-
-    "start": "npm run start:users-service && npm run start:appointment-service && npm run start:quote-service && npm run start:ask-question-service && npm run start:notification-service",
-    "restart": "pm2 restart users-service-3001 --update-env && pm2 restart appointment-service-4001 --update-env && pm2 restart quote-service-5001 --update-env && pm2 restart ask-question-service-6001 --update-env && pm2 restart notification-service-7001 --update-env",
+    "start:payment-service": "npm run start:payment-service:8001",
+    "start": "npm run start:users-service && npm run start:appointment-service && npm run start:quote-service && npm run start:ask-question-service && npm run start:notification-service && npm run start:payment-service ",
+    "restart": "pm2 restart users-service-3001 --update-env && pm2 restart appointment-service-4001 --update-env && pm2 restart quote-service-5001 --update-env && pm2 restart ask-question-service-6001 --update-env && pm2 restart notification-service-7001 --update-env && pm2 restart payment-service-8001 --update-env",
     "local:users-service": "cross-env NODE_ENV=users-service npx ts-node src/users-service/index.ts",
     "local:appointment-service": "cross-env NODE_ENV=appointment-service npx ts-node src/appointment-service/index.ts",
     "local:quote-service": "cross-env NODE_ENV=quote-service npx ts-node src/quote-service/index.ts",
     "local:ask-question-service": "cross-env NODE_ENV=ask-question-service npx ts-node src/ask-question-service/index.ts",
-    "local:notification-service": "cross-env NODE_ENV=notification-service npx ts-node src/notification-service/index.ts"
-
+    "local:notification-service": "cross-env NODE_ENV=notification-service npx ts-node src/notification-service/index.ts",
+    "local:payment-service": "cross-env NODE_ENV=payment-service npx ts-node src/payment-service/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +31,7 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "concurrently": "^8.2.2",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
     "msg91": "^2.2.4",
