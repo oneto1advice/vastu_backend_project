@@ -25,11 +25,11 @@ export class PaymentRepository {
   };
 
 
-  static async verifyPayment(razorpay_order_id: string, razorpay_payment_id: string, signature: string): Promise<any> {
+  static async verifyPayment(razorpay_order_id: string, razorpay_payment_id: string, razorpay_signature: string): Promise<any> {
     try {
       const generatedSignature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET as string).update(razorpay_order_id + '|' + razorpay_payment_id).digest('hex');
       console.log('generatedSignature', generatedSignature)
-      if (generatedSignature === signature) {
+      if (generatedSignature === razorpay_signature) {
         const payment = await this.getPaymentByOrderId(razorpay_order_id);
         if (payment) {
           payment.razorpay_payment_id = razorpay_payment_id;
@@ -38,7 +38,7 @@ export class PaymentRepository {
           return { message: "Payment verified successfully", status: "success", data: payment };
         }
       } else {
-        return { message: "Payment verification failed", status: "success" };
+        return { message: "Payment verification failed", status: "failed" };
       }
     } catch (error) {
       console.error('Error creating payment:', error);

@@ -22,9 +22,9 @@ export class PaymentController {
   static async verifyPayment(req: Request, res: Response): Promise<void> {
    
     try {
-      const { razorpay_order_id, razorpay_payment_id, signature } = req.body;
+      const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
-      const paymentData = await PaymentService.verifyPayment(razorpay_order_id, razorpay_payment_id, signature);
+      const paymentData = await PaymentService.verifyPayment(razorpay_order_id, razorpay_payment_id, razorpay_signature);
       res.status(200).json({ status: 'ok', paymentData });
     } catch (error: any) {
       res.status(400).json({ status: 'error', message: error.message });

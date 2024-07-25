@@ -37,9 +37,9 @@ export class PaymentService {
         }
     }
 
-    static async verifyPayment(razorpay_order_id: string, razorpay_payment_id: string, signature: string): Promise<any> {
+    static async verifyPayment(razorpay_order_id: string, razorpay_payment_id: string, razorpay_signature: string): Promise<any> {
         try {
-          const payment = await PaymentRepository.verifyPayment(razorpay_order_id, razorpay_payment_id, signature);
+          const payment = await PaymentRepository.verifyPayment(razorpay_order_id, razorpay_payment_id, razorpay_signature);
           return payment;
         } catch (error) {
           throw new Error('Could not save payment');
