@@ -101,7 +101,7 @@ export async function verifyOTP(req: Request, res: Response): Promise<void> {
 export async function deleteAccount(req: Request, res: Response): Promise<void> {
   try {
     const { id } = req.params;
-    const disableAccount = await UserService.deleteAccount(parseInt(id), req.body);
+    const disableAccount = await UserService.deleteAccount(parseInt(id));
 
     console.log("disableAccount",disableAccount)
     res.status(200).json({ message: disableAccount });

@@ -31,7 +31,7 @@ export class PaymentController {
     }
   };
 
- 
+
   static async updatePaymentStatusController(req: Request, res: Response): Promise<any> {
     try {
       const { razorpay_order_id, status } = req.body;

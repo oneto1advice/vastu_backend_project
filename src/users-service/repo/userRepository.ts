@@ -48,15 +48,13 @@ export class UserRepository {
     return await User.findOne({ where: { mobile, otp } });
   }
 
-  public static async deleteAccount(id: number, data: any): Promise<any | null> {
+  public static async deleteAccount(id: number): Promise<any | null> {
     var value = "";
-    console.log(data.status)
     var user = await User.findOne({ where: { id } });
-    console.log(user?.dataValues.status)
      if(user?.dataValues.status === 2){
        value = "No data found";
      }else {
-      await User.update(data,{ where: { id } });
+      await User.update({"status": 2},{ where: { id } });
       value = "Delete Account Successfully";
      }
      return value;
