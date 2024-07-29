@@ -38,9 +38,9 @@ export class UserService {
       {
         authkey: '7dc1c771263a4e70',
         sms: `Your OTP is: ${otp}`,
-        mobile: '9990820210',
+        mobile: emailOrMobile,
         country_code: '91',
-        sender: emailOrMobile
+        sender: 'AUTHKEYOTP'
       },
       headers: {
         'Content-Type': 'application/json'
