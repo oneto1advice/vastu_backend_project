@@ -16,7 +16,7 @@
     "start:ask-question-service": "npm run start:ask-question-service:6001",
     "start:notification-service": "npm run start:notification-service:7001",
     "start:payment-service": "npm run start:payment-service:8001",
-    "start": "npm run start:users-service && npm run start:appointment-service && npm run start:quote-service && npm run start:ask-question-service && npm run start:notification-service && npm run start:payment-service ",
+    "start": "npm run start:users-service && npm run start:appointment-service && npm run start:quote-service && npm run start:ask-question-service && npm run start:notification-service && npm run start:payment-service",
     "restart": "pm2 restart users-service-3001 --update-env && pm2 restart appointment-service-4001 --update-env && pm2 restart quote-service-5001 --update-env && pm2 restart ask-question-service-6001 --update-env && pm2 restart notification-service-7001 --update-env && pm2 restart payment-service-8001 --update-env",
     "local:users-service": "cross-env NODE_ENV=users-service npx ts-node src/users-service/index.ts",
     "local:appointment-service": "cross-env NODE_ENV=appointment-service npx ts-node src/appointment-service/index.ts",
