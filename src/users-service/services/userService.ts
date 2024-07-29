@@ -1,6 +1,6 @@
 import { UserRepository } from "../repo/userRepository";
 import otpGenerator from 'otp-generator';
-import msg91 from "msg91";
+import request from 'request'
 // import twilio from 'twilio';
 export class UserService {
 
@@ -31,28 +31,39 @@ export class UserService {
     // const accountSid = process.env.TWILIO_ACCOUNT_SID;
     // const authToken = process.env.TWILIO_AUTH_TOKEN;
 
-    // var options = {
-    //   method: 'GET',
-    //   url: 'https://api.authkey.io/request',
-    //   qs:
-    //   {
-    //     authkey: '313935AIdapokF4I715e2484b4P1',
-    //     sms: `Your OTP is: ${otp}`,
-    //     mobile: '9990820210',
-    //     country_code: '91',
-    //     sender: '7060532399'
-    //   },
-    // };
+    var options = {
+      method: 'GET',
+      url: 'https://api.authkey.io/request',
+      qs:
+      {
+        authkey: '7dc1c771263a4e70',
+        sms: `Your OTP is: ${otp}`,
+        mobile: '9990820210',
+        country_code: '91',
+        sender: emailOrMobile
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
 
     // require("request")(options, function (error: string | undefined, response: any, body: any) {
     //   if (error) throw new Error(error);
     //   console.log(body);
     // });
-    msg91.initialize({ authKey: "313935AIdapokF4I715e2484b4P1" });
-    let otpMsg = msg91.getOTP("660010aad6fc056cdc774262", { length: 6 });
-    console.log(otpMsg)
-    // Send OTP
-    otpMsg.send("+917060532399");
+
+    request(options, function (error, response, body) {
+      if (error) {
+        console.error('Error:', error);
+        return;
+      }
+      console.log('Response:', response && response.statusCode);
+      console.log('Body:', body);
+    });
+    // msg91.initialize({ authKey: "313935AIdapokF4I715e2484b4P1" });
+    // let otpMsg = msg91.getOTP("660010aad6fc056cdc774262", { length: 6 });
+    // console.log(otpMsg)
+    // otpMsg.send("+917060532399");
 
     return otp;
   }
