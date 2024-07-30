@@ -34,7 +34,7 @@ export class UserService {
         sid: '12564',
         mobile: emailOrMobile, 
         country_code: '91',
-        company: 'vaastudevayah',
+        company: 'Vaastu Devayah Namah',
         otp: otp        
       }
     };
